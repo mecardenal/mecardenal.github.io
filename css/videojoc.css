@@ -1,0 +1,12 @@
+#trailer{
+	*clear:both;
+	*margin:0px auto;
+	width:600px;
+	float:left;
+} 
+
+#descripcio_v{
+	margin:0px 0px 0px 20px;
+	float:left;
+	width:280px;
+}
