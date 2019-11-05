@@ -1,0 +1,78 @@
+#contenidor_form{
+	color:#e9e9e9;
+}
+
+fieldset legend{
+	font: 24px VT323;
+}
+
+input[type="text"],input[type="date"],input[type="email"],input[type="password"], select{
+	box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 0px 0px 0px 15px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	border-radius:5px;
+	background: #ffffffa3;
+	margin-bottom: 10px;
+	font: 18px Ubuntu;
+	height: 45px;
+}
+
+input[type="date"]{
+	width:200px;
+	text-align:center;
+	padding-top:10px;
+	padding-right:10px;
+}
+
+input[type="submit"]{
+	box-shadow: inset 0px 1px 0px 0px #f9c985;
+	background-color: #7DE2D1;
+	border: 1px solid #613b05;
+	border-radius:5px;
+	cursor: pointer;
+	font-size: 18px;
+	padding: 8px 40px;
+	margin-top:20px;
+	float:right;
+	clear:both;
+}
+
+input[type="submit"]:hover{
+	color:white;
+}
+
+input[type="radio"]{
+	margin-left:20px;
+	margin-top:20px;
+}
+
+input[type="checkbox"]{
+	margin-right: 6px;
+}
+
+option{
+	padding:5px;
+}
+
+.bloc_form1, .bloc_form2{
+	float:left;
+	padding:10px;
+	width:400px;
+*	font: 18px Ubuntu;
+}
+
+.bloc_form1{
+	margin-right:20px;
+}
+
+.bloc_form1 div, .bloc_form2 div{
+	margin-top:20px;
+}
+
+#boto_condicions{
+	float:right;
+}

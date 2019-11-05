@@ -1,0 +1,101 @@
+/* Defineixo el color de fons i la font per defecte de tot el document */
+html{
+	height:100%;
+}
+body {
+	background-image: linear-gradient(#052c46, #e22a3a);
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 18px;
+	color: white;
+	margin:0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Defineixo l'amplada i posició del contenidor */
+#contenidor{
+	margin:0px auto;
+	width:900px;
+}
+
+/* Trec el margin que ve per defecte a ul */
+ul{
+	margin:0px;
+}
+
+/* Defineixo l'estil de la capçalera */
+header{
+	font: bold 120px 'VT323';
+	padding:10px 0px 0px 20px;
+	text-align:center;
+	color: #e22a3a;
+}
+
+/* Aquí comença l'estil del bloc nav */
+nav{
+	clear:both;
+	font-size: 28px;
+	font-family: 'VT323', monospace;
+	*background-color:white;
+	height:50px;
+}
+
+ul{
+	margin:0px auto;
+	list-style:none; 
+	padding-left:20px;
+	width:600px;
+}
+
+ul li{
+	float:left;
+	padding:10px 60px;
+	color:white;
+}
+
+ul li:hover{
+	background-color: #e22a3a;
+	color:white;
+}
+/* Aquí acaba l'estil del bloc nav */
+
+/* Aquí comença l'estil del bloc section */
+section{
+	padding-top:20px;
+	padding-bottom:20px;
+	width:100%;
+}
+
+/* Aquí acaba l'estil del bloc section */
+
+article{
+ *	margin: 0px auto;
+ 	padding-top:30px;
+  *  width: 880px;
+}
+
+/* Aquí comença l'estil del bloc footer */
+footer{
+	bottom:0px;
+	right:0px;
+	position: absolute;
+	width:100%;
+*	text-align:right;
+	padding:10px 0px;
+}
+
+#footer_cont{
+	width: 900px;
+	margin:0px auto;
+}
+
+#footer_esq{
+	float:left;
+}
+
+#footer_dreta{
+	float:right;
+}
+/* Fins aquí el bloc footer */

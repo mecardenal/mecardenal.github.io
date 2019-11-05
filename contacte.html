@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!-- Enllaço els fulls d'estil -->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu|VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/contacte.css">
+<!-- Declaro la codificació dels caracters UTF-8 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Contacte</title>
+</head>
+
+<body>
+<!-- Creo un div que serveix per definir l'amplada del contingut -->
+<div id='contenidor'>
+	<header>Misa Quest</header>
+	<nav>
+		<!-- Menú horitzontal de la part superior -->
+		<ul>
+			<a href="index.html" title="Pàgina d'inici"><li>Inici</li></a>
+			<a href="videojoc.html" title="Clicka per a jugar!"><li>Videojoc</li></a>
+			<a href="contacte.html" title="Contacte"><li>Contacte</li></a>
+		</ul>
+	</nav>
+	<section>
+		<article>
+			<div id="contenidor_form">
+			<form action="" method="POST">
+				<fieldset>
+					<legend>Per a contactar amb nosaltres omple aquest formulari:</legend>
+					<div class="bloc_form1">
+						<div>
+							<label for="nom">Nom i cognoms*</label><br>
+							<input id="nom" type="text" name="nom"  required/>
+						</div>
+						<div>
+							<label for="adreca">Adreça*</label><br>
+							<input id="adreca" type="text" name="adreca" required/>
+						</div>
+						<div>
+							<label for="ciutat">Ciutat*</label><br>
+							<select id="ciutat" name="ciutat" required>
+								<option value="">(Selecciona una opció)</option>
+								<option value="Ciutat 1">Ciutat 1</option>
+								<option value="Ciutat 2">Ciutat 2</option>
+								<option value="Ciutat 3">Ciutat 3</option>
+							</select>
+						</div>
+						<div>
+							<label for="data_naix">Data de naixement*</label><br>
+							<input id="data_naix" type="date" name="data_naix" required/>
+						</div>
+					</div>
+					<div class="bloc_form2">
+						<div>
+							<label for="sexe">Sexe*</label><br>
+							<input type="radio" value="bin" name="sexe" id="bin" required/> Binari
+							<input type="radio" value="nobin" name="sexe" id="nobin" /> No Binari
+							<input type="radio" value="nsnc" name="sexe" id="nsnc" /> NS/NC
+						</div>
+						<div>
+							<label for="correu">Correu electrònic*</label><br>
+							<input id="correu" type="email" name="correu" required/>
+						</div>
+						<div>
+							<label for="password">Password*</label><br>
+							<input id="password" type="password" name="password" required/>
+						</div>
+						<div id="boto_condicions">
+							<input type="checkbox" value="condicions" name="condicions" id="condicions" required/><label for="condicions">Accepto les condicions</label>
+						</div>
+						<input type="submit" value="ENVIAR" />
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		</article>
+	</section>
+	
+	<footer>
+		<div id="footer_cont">
+				<div id="footer_esq">
+				Joc creat amb HTML + CSS + Phaser 3<br>Fons i assets lliures de drets (autor <a href="https://ansimuz.itch.io/cyberpunk-street-environment" target="_blank" title="Fons i assets originals">ansimuz</a>)
+			</div>	
+			<div id="footer_dreta">
+				<br>2019 Mañi
+			</div>	
+		</div>
+	</footer>
+</div> <!-- Aquí acaba el div contenidor -->
+</body>
+
+</html>
