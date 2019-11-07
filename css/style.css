@@ -3,8 +3,9 @@ html{
 	height:100%;
 }
 body {
-	background-image: linear-gradient(#052c46, #e22a3a);
-	font-family: 'Ubuntu', sans-serif;
+	background-image: linear-gradient(#052c46, #b43973);
+	font-family: 'Dosis', serif;
+
 	font-size: 18px;
 	color: white;
 	margin:0px;
@@ -20,33 +21,37 @@ a {
 	width:900px;
 }
 
-/* Trec el margin que ve per defecte a ul */
-ul{
-	margin:0px;
-}
-
 /* Defineixo l'estil de la capçalera */
 header{
-	font: bold 120px 'VT323';
-	padding:10px 0px 0px 20px;
+	font: bold 65px 'Press Start 2P';
+	padding:25px 0px 0px 25px;
 	text-align:center;
-	color: #e22a3a;
+*	color: #f56c15;
+	  -webkit-text-stroke: 1px WHITE;
+
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(to bottom,#3c1f3d 28% ,#b43973 50%, #fdab28 77%);
+
 }
 
 /* Aquí comença l'estil del bloc nav */
 nav{
 	clear:both;
-	font-size: 28px;
-	font-family: 'VT323', monospace;
-	*background-color:white;
-	height:50px;
+	font-size: 14px;
+	font-family: 'Press Start 2P';
+	*height:50px;
+	width:100%;
+	float:left;
+	margin: 15px 0px;
 }
 
 ul{
 	margin:0px auto;
 	list-style:none; 
 	padding-left:20px;
-	width:600px;
+	width:655px;
 }
 
 ul li{
@@ -56,25 +61,21 @@ ul li{
 }
 
 ul li:hover{
-	background-color: #e22a3a;
+	background-color: #f56c15;
 	color:white;
 }
 /* Aquí acaba l'estil del bloc nav */
 
 /* Aquí comença l'estil del bloc section */
 section{
-	padding-top:20px;
+	padding-top:15px;
 	padding-bottom:20px;
 	width:100%;
+	clear:both;
 }
 
 /* Aquí acaba l'estil del bloc section */
 
-article{
- *	margin: 0px auto;
- 	padding-top:30px;
-  *  width: 880px;
-}
 
 /* Aquí comença l'estil del bloc footer */
 footer{
