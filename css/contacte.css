@@ -3,7 +3,7 @@
 }
 
 fieldset legend{
-	font: 24px VT323;
+	font: 24px Press Start 2P;
 }
 
 input[type="text"],input[type="date"],input[type="email"],input[type="password"], select{
@@ -17,7 +17,7 @@ input[type="text"],input[type="date"],input[type="email"],input[type="password"]
 	border-radius:5px;
 	background: #ffffffa3;
 	margin-bottom: 10px;
-	font: 18px Ubuntu;
+	font: 18px Dosis;
 	height: 45px;
 }
 
@@ -30,11 +30,11 @@ input[type="date"]{
 
 input[type="submit"]{
 	box-shadow: inset 0px 1px 0px 0px #f9c985;
-	background-color: #7DE2D1;
+	background-color: #f56c15;
 	border: 1px solid #613b05;
 	border-radius:5px;
 	cursor: pointer;
-	font-size: 18px;
+	font: 18px Dosis;
 	padding: 8px 40px;
 	margin-top:20px;
 	float:right;
@@ -62,7 +62,6 @@ option{
 	float:left;
 	padding:10px;
 	width:400px;
-*	font: 18px Ubuntu;
 }
 
 .bloc_form1{
