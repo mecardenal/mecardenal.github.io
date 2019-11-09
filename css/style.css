@@ -2,10 +2,10 @@
 html{
 	height:100%;
 }
+
 body {
 	background-image: linear-gradient(#052c46, #b43973);
 	font-family: 'Dosis', serif;
-
 	font-size: 18px;
 	color: white;
 	margin:0px;
@@ -13,6 +13,7 @@ body {
 
 a {
 	text-decoration: none;
+	color: #3affff;
 }
 
 /* Defineixo l'amplada i posició del contenidor */
@@ -26,14 +27,11 @@ header{
 	font: bold 65px 'Press Start 2P';
 	padding:25px 0px 0px 25px;
 	text-align:center;
-*	color: #f56c15;
-	  -webkit-text-stroke: 1px WHITE;
-
-  color:transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: linear-gradient(to bottom,#3c1f3d 28% ,#b43973 50%, #fdab28 77%);
-
+	-webkit-text-stroke: 1px WHITE;
+	color:transparent;
+  	-webkit-background-clip: text;
+  	background-clip: text;
+  	background-image: linear-gradient(to bottom,#3c1f3d 28% ,#b43973 50%, #fdab28 77%);
 }
 
 /* Aquí comença l'estil del bloc nav */
@@ -41,7 +39,6 @@ nav{
 	clear:both;
 	font-size: 14px;
 	font-family: 'Press Start 2P';
-	*height:50px;
 	width:100%;
 	float:left;
 	margin: 15px 0px;
@@ -82,8 +79,8 @@ footer{
 	right:0px;
 	position: absolute;
 	width:100%;
-*	text-align:right;
 	padding:10px 0px;
+	font-size:14px;
 }
 
 #footer_cont{
