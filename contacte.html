@@ -2,13 +2,14 @@
 <html>
 
 <head>
-<!-- Enllaço els fulls d'estil -->
+<!-- Enllaço la font -->
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Ubuntu&display=swap" rel="stylesheet">
+<!-- Enllaço els fulls d'estil -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/contacte.css">
 <!-- Declaro la codificació dels caracters UTF-8 -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Contacte</title>
+<title>Contacte: Misa Quest</title>
 </head>
 
 <body>
@@ -26,6 +27,7 @@
 	<section>
 		<article>
 			<div id="contenidor_form">
+			<!-- Aquí comença el formulari de contacte -->
 			<form action="" method="POST">
 				<fieldset>
 					<legend>Per a contactar amb nosaltres omple aquest formulari:</legend>
@@ -39,6 +41,7 @@
 							<input id="adreca" type="text" name="adreca" required/>
 						</div>
 						<div>
+							<!-- Al desplegable de la ciutat caldrà afegir una llista de les ciutats disponibles -->
 							<label for="ciutat">Ciutat*</label><br>
 							<select id="ciutat" name="ciutat" required>
 								<option value="">(Selecciona una opció)</option>
@@ -54,6 +57,7 @@
 					</div>
 					<div class="bloc_form2">
 						<div>
+							<!-- Al camp sexe afegim la opció NS/NC perquè és una pregunta molt personal -->
 							<label for="sexe">Sexe*</label><br>
 							<input type="radio" value="bin" name="sexe" id="bin" required/> Si
 							<input type="radio" value="nobin" name="sexe" id="nobin" /> No
@@ -73,15 +77,16 @@
 						<input type="submit" value="ENVIAR" />
 					</div>
 				</fieldset>
-			</form>
+			</form> <!-- Aquí acaba el formulari de contacte -->
 		</div>
 		</article>
 	</section>
-	
+		
+	<!-- Al peu de pàgina posem informació rellevant sobre el videojoc (Copyright, autors, etc) -->
 	<footer>
 		<div id="footer_cont">
 				<div id="footer_esq">
-				Joc creat amb HTML + CSS + Phaser 3<br>Fons i assets lliures de drets (autor <a href="https://edermunizz.itch.io/free-pixel-art-forest" target="_blank" title="Fons i assets originals">edermunizz</a>)
+				Joc creat amb HTML + CSS + Phaser 3<br>Fons i assets lliures de drets (autor <a href="https://edermunizz.itch.io/free-pixel-art-forest" target="_blank" title="Fons i assets originals">edermunizz</a> + <a href="https://archive.org/details/BellaCiao8BitMix_201807" target="_blank">HooliNerd</a>)
 			</div>	
 			<div id="footer_dreta">
 				<br>2019 Mañi

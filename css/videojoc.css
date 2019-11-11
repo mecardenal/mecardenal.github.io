@@ -1,6 +1,7 @@
+/* Aquest full d'estil correspon a la pàgina videojoc.html */
+
+/* Definim la posició i mida dels elements */
 #trailer{
-	*clear:both;
-	*margin:0px auto;
 	width:600px;
 	float:left;
 } 
@@ -9,4 +10,11 @@
 	margin:0px 0px 0px 20px;
 	float:left;
 	width:280px;
+}
+
+/* Augmentem la mida de la font per al títol */
+#titol_descripcio{
+	font: 18px 'Press Start 2P';
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
