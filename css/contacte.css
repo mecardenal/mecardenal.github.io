@@ -1,11 +1,35 @@
+/* Aquest full d'estil correspon a la pàgina contacte.html */
+
+/* Definim la posició i mida dels elements de la pàgina*/
 #contenidor_form{
 	color:#e9e9e9;
+}
+
+
+.bloc_form1, .bloc_form2{
+	float:left;
+	padding:10px;
+	width:400px;
+}
+
+.bloc_form1{
+	margin-right:20px;
+}
+
+.bloc_form1 div, .bloc_form2 div{
+	margin-top:20px;
+}
+
+
+#boto_condicions{
+	float:right;
 }
 
 fieldset legend{
 	font: 24px Press Start 2P;
 }
 
+/* Definim l'estil dels camps del formulari segons el seu type */
 input[type="text"],input[type="date"],input[type="email"],input[type="password"], select{
 	box-sizing: border-box;
 	outline: none;
@@ -59,20 +83,3 @@ option{
 	padding:5px;
 }
 
-.bloc_form1, .bloc_form2{
-	float:left;
-	padding:10px;
-	width:400px;
-}
-
-.bloc_form1{
-	margin-right:20px;
-}
-
-.bloc_form1 div, .bloc_form2 div{
-	margin-top:20px;
-}
-
-#boto_condicions{
-	float:right;
-}
