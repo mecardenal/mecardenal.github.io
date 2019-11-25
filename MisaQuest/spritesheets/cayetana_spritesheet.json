@@ -1,0 +1,167 @@
+{
+	"textures": [
+		{
+			"image": "cayetana_spritesheet.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 420,
+				"h": 70
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "sprite_Cayetana_camina_derecha0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_camina_derecha1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 60,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_camina_derecha2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 120,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_camina_izquierda0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 180,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_camina_izquierda1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 240,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_camina_izquierda2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 300,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				},
+				{
+					"filename": "sprite_Cayetana_frente.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 60,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					},
+					"frame": {
+						"x": 360,
+						"y": 0,
+						"w": 60,
+						"h": 70
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:94f3ad6a61777300e668427ae35189f3:82edd7ba6cb0df427d5f1cf92e8a1f07:4bdb32932ff07c98acf5fc94cab88a40$"
+	}
+}

@@ -1,0 +1,510 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bin",
+				"bin"
+			],
+			[
+				"c",
+				"color\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3361,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Manhi/Downloads/src_game objects_tilemap_static_set colliding tiles.js",
+			"settings":
+			{
+				"buffer_size": 2198,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/Mapa_MisaQuest.json",
+			"settings":
+			{
+				"buffer_size": 45162,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/Tileset_MisaQuest.json",
+			"settings":
+			{
+				"buffer_size": 258,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/estilo_MQ.css",
+			"settings":
+			{
+				"buffer_size": 649,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "html,"
+			}
+		},
+		{
+			"contents": "<!doctype html> \n<html lang=\"en\"> \n<head> \n    <meta charset=\"UTF-8\" />\n    <title>Making your first Phaser 3 Game - Part 9</title>\n    <script src=\"//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js\"></script>\n    <style type=\"text/css\">\n        body {\n            margin: 0;\n        }\n    </style>\n</head>\n<body>\n\n<script type=\"text/javascript\">\n\n    var config = {\n        type: Phaser.AUTO,\n        width: 800,\n        height: 600,\n        physics: {\n            default: 'arcade',\n            arcade: {\n                gravity: { y: 300 },\n                debug: false\n            }\n        },\n        scene: {\n            preload: preload,\n            create: create,\n            update: update\n        }\n    };\n\n    var player;\n    var stars;\n    var platforms;\n    var cursors;\n    var score = 0;\n    var scoreText;\n\n    var game = new Phaser.Game(config);\n\n    function preload ()\n    {\n        this.load.image('sky', 'assets/sky.png');\n        this.load.image('ground', 'assets/platform.png');\n        this.load.image('star', 'assets/star.png');\n        this.load.image('bomb', 'assets/bomb.png');\n        this.load.spritesheet('dude', 'assets/cayetana_spritesheet', { frameWidth: 60, frameHeight: 70 });\n    }\n\n    function create ()\n    {\n        this.add.image(400, 300, 'sky');\n\n        platforms = this.physics.add.staticGroup();\n\n        platforms.create(400, 568, 'ground').setScale(2).refreshBody();\n\n        platforms.create(600, 400, 'ground');\n        platforms.create(50, 250, 'ground');\n        platforms.create(750, 220, 'ground');\n\n        player = this.physics.add.sprite(100, 450, 'dude');\n\n        player.setBounce(0.2);\n        player.setCollideWorldBounds(true);\n\n        this.anims.create({\n            key: 'left',\n            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),\n            frameRate: 10,\n            repeat: -1\n        });\n\n        this.anims.create({\n            key: 'turn',\n            frames: [ { key: 'dude', frame: 4 } ],\n            frameRate: 20\n        });\n\n        this.anims.create({\n            key: 'right',\n            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),\n            frameRate: 10,\n            repeat: -1\n        });\n\n        cursors = this.input.keyboard.createCursorKeys();\n\n        stars = this.physics.add.group({\n            key: 'star',\n            repeat: 11,\n            setXY: { x: 12, y: 0, stepX: 70 }\n        });\n\n        stars.children.iterate(function (child) {\n\n            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));\n\n        });\n\n        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });\n\n        this.physics.add.collider(player, platforms);\n        this.physics.add.collider(stars, platforms);\n\n        this.physics.add.overlap(player, stars, collectStar, null, this);\n    }\n\n    function update ()\n    {\n        if (cursors.left.isDown)\n        {\n            player.setVelocityX(-160);\n\n            player.anims.play('left', true);\n        }\n        else if (cursors.right.isDown)\n        {\n            player.setVelocityX(160);\n\n            player.anims.play('right', true);\n        }\n        else\n        {\n            player.setVelocityX(0);\n\n            player.anims.play('turn');\n        }\n\n        if (cursors.up.isDown && player.body.touching.down)\n        {\n            player.setVelocityY(-330);\n        }\n    }\n\n    function collectStar (player, star)\n    {\n        star.disableBody(true, true);\n\n        score += 10;\n        scoreText.setText('Score: ' + score);\n    }\n\n</script>\n\n</body>\n</html>",
+			"file": "/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part9.html",
+			"file_size": 3726,
+			"file_write_time": 131769886094725242,
+			"settings":
+			{
+				"buffer_size": 3589,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"View: Toggle Minimap"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/MisaQuest/assets/Tileset_MisaQuest.tsx",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/MisaQuest/assets/Tileset_MisaQuest.tmx",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/MisaQuest/assets/Atlas_MisaQuest.json",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/mecardenal.github.io/index.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part8.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part7.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part6.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part5.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part4.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part3.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part1.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part2.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/square/js/sql_log.txt",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/conexion.php",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/square/extras/extra_fractal.php",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/check_userid.php",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/check_password.php",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/check_existe_usuario.php",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/square/extras/extras_generator.php",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Segona Part/mecardenal.github.io/phaser3-tutorial-src/part1.html",
+		"/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/square_reloaded/info.php",
+		"/C/Users/Manhi/Documents/square_reloaded/conexion.php",
+		"/C/Users/Manhi/Documents/square_reloaded/conexioni.php",
+		"/C/Users/Manhi/Documents/square_reloaded/mani/buscador_texto_files.php",
+		"/C/Users/Manhi/Documents/square_reloaded/index.php",
+		"/C/Users/Manhi/Documents/square_reloaded/proyecto codigo limpio.sublime-project",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/css/style.css",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/css/contacte.css",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/css/videojoc.css",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/contacte.html",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/videojoc.html",
+		"/C/Users/Manhi/Documents/GitHub/mecardenal.github.io/index.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/WEB/index.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/css/style.css",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/contacte.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/videojoc.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/css/contacte.css",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Primera Part/css/videojoc.css",
+		"/C/Users/Manhi/Documents/conexion_db.php",
+		"/C/Users/Manhi/Documents/GitHub/modulooper/conexion_db.php",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAF4/Assets de Internet/warped-files/Demo/phaser.min.js",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/js/script.js",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/index.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/fibonacci.html",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/css/style_fibonacci.css",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/css/style.css",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/js/canviBackground.js",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/style_fibonacci.css",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/script.js",
+		"/C/Users/Manhi/Google Drive/IOC/M06 Realització PMI/EAC4/canviBackground.js",
+		"/C/Bitnami/wampstack-7.1.23-1/apps/phpmyadmin/htdocs/config.inc.php",
+		"/C/Bitnami/wampstack-7.1.23-1/docs/demo/htdocs/lista_tablas.php",
+		"/C/Users/Manhi/Documents/GitHub/M06_Joc/HTML/index.html",
+		"/C/Users/Manhi/Documents/IOC/M05 Projectes jocs i ea/Proyecto prueba/.git/COMMIT_EDITMSG",
+		"/C/Users/Manhi/Documents/IOC/M05 Projectes jocs i ea/Proyecto prueba/ficherico3",
+		"/C/Users/Manhi/Downloads/Adobe.Animate.CC.2018.v18.0.0.107.x64.MULTI/Informacion del archivo.txt"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"stars",
+			"texture",
+			"curso",
+			"if",
+			"app_menu",
+			"aplis",
+			"session_s",
+			"inde",
+			".php",
+			"icon",
+			"$_SESSION['userid']",
+			"logo",
+			"$_GET['action']",
+			"mysql",
+			"Dosis",
+			"ubuntu",
+			"WHITE",
+			"vt3",
+			"nom",
+			"QUEST",
+			"paddin",
+			"solid",
+			"version_drop_da",
+			"tracking_default_statements",
+			"$cfg['Servers'][$i]['pmadb']",
+			"Advanced phpMyAdmin features",
+			"$cfg['Servers'][$i]['controluser']",
+			" User for advanced features"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$session_userid",
+			"$accion"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3361,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2556,
+								2556
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Manhi/Downloads/src_game objects_tilemap_static_set colliding tiles.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2198,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "assets/Mapa_MisaQuest.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 45162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								197
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assets/Tileset_MisaQuest.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								69,
+								69
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "css/estilo_MQ.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								649,
+								649
+							]
+						],
+						"settings":
+						{
+							"auto_name": "html,",
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "/C/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Phaser_ejemplos/part9.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2583,
+								2666
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1890.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "MisaQuest_juego.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
