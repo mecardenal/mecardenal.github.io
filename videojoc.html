@@ -7,8 +7,16 @@
 <!-- Enllaço els fulls d'estil -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/videojoc.css">
+<!-- Enllaço els scripts -->
+<script src="js/phaser.js"></script>
+<script src="js/scenes/homeScene.js" type="text/javascript"></script>
+<script src="js/scenes/loadingScene.js" type="text/javascript"></script>
+<script src="js/scenes/gameScene.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
 <!-- Declaro la codificació dels caracters UTF-8 -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 <title>Videojoc: Misa Quest</title>
 </head>
 
@@ -25,19 +33,7 @@
 		</ul>
 	</nav>
 	<section>
-		<article>
-			<!-- Al següent div posem el video de presentació i la descripció -->
-			<diV id="trailer" >
-				<video preload="auto" controls="controls" width="600px">
-					<source src="video/trailer_videojoc.mp4">
-					<source src="video/trailer_videojoc.wmv">
-				</video>
-			</diV>
-			<div id="descripcio_v">
-				<div id="titol_descripcio">Tràiler</div>
-				Sabem que tens ganes de jugar-hi, però hauràs de tenir una mica de paciència! De moment, per a alleugerar l'espera, aquí tens el tràiler del videojoc perquè te'n facis una idea. <br><br>Si creus que donar la teva opinió és important, no dubtis a fer-nos-la arribar! Ho pots fer a través del formulari de l'apartat de <i>Contacte</i>.
-				<br><br><u>Misa Quest</u>: probablement el millor joc de plataformes protagonitzat per una senyora prejubilada.</div>
-		</article>
+		<div id='joc'></div>
 	</section>
 	
 	<!-- Al peu de pàgina posem informació rellevant sobre el videojoc (Copyright, autors, etc) -->

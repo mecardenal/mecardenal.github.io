@@ -19,7 +19,7 @@ a {
 /* Defineixo l'amplada i posició del contenidor */
 #contenidor{
 	margin:0px auto;
-	width:900px;
+	width:800px;
 }
 
 /* Defineixo l'estil de la capçalera */
@@ -84,7 +84,7 @@ footer{
 }
 
 #footer_cont{
-	width: 900px;
+	width: 800px;
 	margin:0px auto;
 }
 
