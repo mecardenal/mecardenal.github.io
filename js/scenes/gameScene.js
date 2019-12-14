@@ -164,7 +164,6 @@ class gameScene extends Phaser.Scene {
 
             });
             textoGO.setDepth(2);
-          //  mapa.fillStyle(0xF40061, 0.5);
             gameOver = true;
 	    }
 
@@ -194,6 +193,22 @@ class gameScene extends Phaser.Scene {
         }
 
 
+        var disparoGaysper = function(gaysper,bullet){
+            bullet.destroy();
+            gaysper.disableBody(true,true);
+        }
+
+        var disparoSuelo = function(suelo,bullet){
+            bullet.destroy();
+        }
+
+        lastFired = 0;
+
+        bullets = this.physics.add.group();
+        this.physics.add.collider(bullets);
+
+//bullets.body.collideWorldBounds=true;
+
 
         //Defino qué elementos deben colisionar con otros y si se debe activar alguna acción
         this.physics.add.collider(player, layer_suelo);
@@ -202,7 +217,8 @@ class gameScene extends Phaser.Scene {
         this.physics.add.collider(gayspers, layer_suelo);
         this.physics.add.collider(player, gayspers, chocaGaysper, null, this);
         this.physics.add.collider(player, iglesia_final, chocaIglesia, null, this);    
-
+        this.physics.add.overlap(gayspers, bullets, disparoGaysper, null, this);  
+        this.physics.add.overlap(layer_suelo, bullets, disparoSuelo, null, this);     
         //Defino el cartel con los puntos acumulados (comienza en 0)
         textoPuntuacion = this.add.text(20, 20, puntuacion + ' Ostias', {
             fontSize: '30px',
@@ -220,9 +236,11 @@ class gameScene extends Phaser.Scene {
         //Coloco el jugador por encima del cartel inicial
         player.setDepth(1);
 
+
+
     }
 
- update ()
+ update (time)
  {
 
         if(puntuacion >= 100){
@@ -235,21 +253,27 @@ class gameScene extends Phaser.Scene {
         if ((gameOver)&&(cursors.space.isDown))
         {
             puntuacion = 0;
+            gameOver = 0;
             this.scene.restart({ level: 1})
         }
 
         //Defino los movimientos del jugador segun las teclas que aprete
         if (cursors.left.isDown) //Izquierda
         {
+            direccion_pistola = "L";
             player.setVelocityX(-160);
 
             player.anims.play('left', true);
         }
         else if (cursors.right.isDown) //Derecha
         {
+            direccion_pistola = "R";
             player.setVelocityX(160);
 
             player.anims.play('right', true);
+        }
+        else if(cursors.space.isDown){
+            //no hacer nada
         }
         else //ni izq ni der
         {
@@ -262,6 +286,32 @@ class gameScene extends Phaser.Scene {
         {
             player.setVelocityY(-500);
         }
+
+        if (cursors.space.isDown && (time > lastFired)){
+            switch(direccion_pistola)
+            {
+                case "R":
+                    var bala = bullets.create(player.x + 40, player.y - 10,'bullet');
+                    bala.setVelocityX(1500);
+                    player.anims.play('right', true);
+                break;
+                    
+                case "L":
+                    var bala = bullets.create(player.x - 40, player.y - 10 ,'bullet');
+                    bala.setVelocityX(-3000);
+                    player.anims.play('left', true);
+                break;
+                    
+                default:
+                      var bala = bullets.create(player.x - 40, player.y - 10 ,'bullet');
+                    bala.setVelocityX(-3000);
+                    player.anims.play('left', true);
+               break;
+            }
+            lastFired = time + 250;
+        }
+
+
 
         //Muevo el fondo siguiendo al personaje, pero más lentamente
         this.mainGround.tilePositionX = this.cameras.main.scrollX * .2

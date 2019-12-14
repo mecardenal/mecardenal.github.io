@@ -29,4 +29,7 @@ var iglesia_final;
 var gameover_cartel;
 var textoGO;
 var finalnivel_cartel;
+var direccion_pistola;
+var bullets;
+var lastFired;
 var game = new Phaser.Game(config);
