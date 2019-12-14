@@ -23,6 +23,13 @@ class loadingScene extends Phaser.Scene {
 	    this.load.image('Tileset_MisaQuest', 'assets/Tileset_MisaQuest.png');
 	    this.load.image('gaysper', 'assets/sprite_Gaysper.png');
 		this.load.image('pantalla_home','assets/MisaQuest_cartel_insertcoin.png');
+		this.load.image('cartel_gameover','assets/game_over_misaquest.png');
+		this.load.image('cartel_quieromisa','assets/quieromisa_misaquest.png');
+		this.load.image('cartel_amen','assets/amen_misaquest.png');
+		this.load.image('iglesia','assets/iglesia.png');
+
+	//	this.load.bitmapFont('font', 'assets/fonts/font_2P.png', 'assets/fonts/font_2P.fnt');
+
 	    //Comença la part de la pantalla de carrga
 	    this.load.on('progress', function (value) {
 	        progressBar.clear();

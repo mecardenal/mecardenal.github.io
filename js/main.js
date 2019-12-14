@@ -23,5 +23,10 @@ var ostias;
 var gayspers;
 var gameOver = false;
 var textoPuntuacion;
-
+var textoNivel;
+var textoFinalNivel;
+var iglesia_final;
+var gameover_cartel;
+var textoGO;
+var finalnivel_cartel;
 var game = new Phaser.Game(config);
