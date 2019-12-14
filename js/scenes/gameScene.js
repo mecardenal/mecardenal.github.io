@@ -182,6 +182,7 @@ class gameScene extends Phaser.Scene {
                     textoFinalNivel = this.add.text(this.cameras.main.scrollX + 200, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...',{
                     fontSize: '25px'
                 });
+                    this.scene.pause();
                   var exito = 1;
                   
                   setTimeout(() => {  this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion}); }, 6000);
@@ -191,6 +192,7 @@ class gameScene extends Phaser.Scene {
           
 
         }
+
 
 
         var disparoGaysper = function(gaysper,bullet){
