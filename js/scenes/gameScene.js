@@ -18,8 +18,7 @@ class gameScene extends Phaser.Scene {
         let bgmusic = this.sound.add('musica_fons')
         bgmusic.play({
            volume: .3,
-           loop: true,
-           delay:1
+           loop: true
         })
 
         //Creo la imagen de fondo, que se irá moviendo a medida que se mueve el personaje
@@ -28,7 +27,7 @@ class gameScene extends Phaser.Scene {
         //Creo el personaje
         player = this.physics.add.sprite(100, 250, 'cayetana').setScale(1.5);
         player.setSize(40,70);
-        player.setOffset(10,0)
+        player.setOffset(10,0);
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
 
@@ -63,7 +62,7 @@ class gameScene extends Phaser.Scene {
         const tileset = mapa.addTilesetImage('Tileset_MisaQuest');
 
 
-                //Creo cartel inicio nivel
+        //Creo cartel inicio nivel
         var quieromisa_cartel = this.make.image({
             x: game.config.width / 2,
             y: game.config.height / 2,
@@ -97,10 +96,10 @@ class gameScene extends Phaser.Scene {
         //Genero los enemigos
         gayspers = this.physics.add.group({
             key: 'gaysper',
-            repeat: 10,
-            setXY: { x: 900, y: 100, stepX: 200 }
+            repeat: 15,
+            setXY: { x: 900, y: 100, stepX: 150 },
         });
-
+       
 
         //Defino el comportamiento de los enemigos
         
@@ -114,6 +113,7 @@ class gameScene extends Phaser.Scene {
             child.body.bounce.x = 1;
             child.body.collideWorldBounds = true;
             child.body.velocity.x = Phaser.Math.Between(velocidad_min, velocidad_max);
+            //child.body.setOffset(0,0,54,105);
         });
         
       
@@ -157,13 +157,18 @@ class gameScene extends Phaser.Scene {
                 key: 'cartel_gameover'
             });
             gameover_cartel.setDepth(2);
-            textoGO = this.add.text(this.cameras.main.scrollX + 280, this.cameras.main.scrollY + 380, ' Pulsa ESPACIO para\nvolver a intentarlo', {
+            textoGO = this.add.text(this.cameras.main.scrollX + 280, this.cameras.main.scrollY + 380, '   Pulsa SHIFT para\nponer la otra mejilla', {
                 fontSize: '20px',
                 fill: '#ffffff',
                 fontStyle: 'bold',
+                shadowStroke: true,
+                stroke: 'black',
+                strokeThickness: 4
 
             });
             textoGO.setDepth(2);
+
+            bgmusic.stop();
             gameOver = true;
 	    }
 
@@ -182,10 +187,11 @@ class gameScene extends Phaser.Scene {
                     textoFinalNivel = this.add.text(this.cameras.main.scrollX + 200, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...',{
                     fontSize: '25px'
                 });
-                    this.scene.pause();
+                    this.scene.pause(); 
+                    bgmusic.stop();
                   var exito = 1;
                   
-                  setTimeout(() => {  this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion}); }, 6000);
+                  setTimeout(() => {  this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion}); }, 3000);
          
              }
 
@@ -252,7 +258,7 @@ class gameScene extends Phaser.Scene {
 
 
         //Si hemos perdido, se detiene el juego
-        if ((gameOver)&&(cursors.space.isDown))
+        if ((gameOver)&&(cursors.shift.isDown))
         {
             puntuacion = 0;
             gameOver = 0;
@@ -263,14 +269,14 @@ class gameScene extends Phaser.Scene {
         if (cursors.left.isDown) //Izquierda
         {
             direccion_pistola = "L";
-            player.setVelocityX(-160);
+            player.setVelocityX(-200);
 
             player.anims.play('left', true);
         }
         else if (cursors.right.isDown) //Derecha
         {
             direccion_pistola = "R";
-            player.setVelocityX(160);
+            player.setVelocityX(200);
 
             player.anims.play('right', true);
         }
