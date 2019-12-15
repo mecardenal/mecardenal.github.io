@@ -8,8 +8,6 @@ class gameScene extends Phaser.Scene {
     init(props) {
         const { level = 1 } = props
         this.currentLevel = level
-        //const { puntos = 1 } = points
-        //this.puntuacionActual = puntos
     }
 
 	create ()
@@ -17,7 +15,7 @@ class gameScene extends Phaser.Scene {
         //Activo la música de fondo
         let bgmusic = this.sound.add('musica_fons')
         bgmusic.play({
-           volume: .3,
+           volume: .5,
            loop: true
         })
 
@@ -70,18 +68,17 @@ class gameScene extends Phaser.Scene {
         });
 
         //Coloco la iglesia al final del mapa
-       iglesia_final = this.physics.add.staticImage(4650,400,'iglesia');
-      //  iglesia_final = this.physics.add.staticImage(900,400,'iglesia');
+        iglesia_final = this.physics.add.staticImage(4650,400,'iglesia');
+        //iglesia_final = this.physics.add.staticImage(900,400,'iglesia');
 
         iglesia_final.setScale(2);
-        //iglesia_final.setDepth(0);
 
         //Genero las ostias
         //Creo un GRUPO para ello
         ostias = this.physics.add.group({
             key: 'ostia',
             repeat: 30,
-            setXY: { x: 12, y: 0, stepX: 200 },
+            setXY: { x: 400, y: 0, stepX: 200 },
             setScale: {x: 4, y: 4}
         });
 
@@ -100,6 +97,30 @@ class gameScene extends Phaser.Scene {
             setXY: { x: 900, y: 100, stepX: 150 },
         });
        
+       //Genero el fuego
+       
+        var bolaFuego = this.add.particles('fuego');
+        bolaFuego.setDepth(4);
+        //Genero 3 bolas de fuego
+        for  (var i = 0; i < 100; i++){
+
+            bolaFuego.createEmitter({
+                alpha: { start: 0.3, end: 0 },
+                scale: { start: 0.5, end: 2.5 },
+                tint: { start: 0xa3504c, end: 0xa3504c },
+                speed: 20,
+                accelerationY: -200,
+                angle: { min: -85, max: -95 },
+                rotate: { min: -180, max: 180 },
+                lifespan: { min: 400, max: 500 },
+                blendMode: 'ADD',
+                frequency: 60,
+                maxParticles: 60,
+                x: (i*50),
+                y: 620
+            });
+       }
+
 
         //Defino el comportamiento de los enemigos
         
@@ -113,7 +134,8 @@ class gameScene extends Phaser.Scene {
             child.body.bounce.x = 1;
             child.body.collideWorldBounds = true;
             child.body.velocity.x = Phaser.Math.Between(velocidad_min, velocidad_max);
-            //child.body.setOffset(0,0,54,105);
+            child.setDepth(2);
+            child.setScale(1.2);
         });
         
       
@@ -140,6 +162,7 @@ class gameScene extends Phaser.Scene {
 
 	    //Función al colisionar el personaje con una ostia
 	    var cogerOstia = function(player, ostia) {
+            sonido_moneda.play();
             ostia.disableBody(true, true);
             puntuacion += 10;
             textoPuntuacion.setText(puntuacion + ' Ostias');
@@ -147,6 +170,7 @@ class gameScene extends Phaser.Scene {
 
 	    //Función al colisionar el personaje con un enemigo
 	    var chocaGaysper = function(player, gaysper){
+            sonido_muereCayetana.play();
 	        this.physics.pause();
 	        player.setTint(0xff0000);
 	        player.anims.play('turn');
@@ -175,8 +199,10 @@ class gameScene extends Phaser.Scene {
 
         //Función al colisionar el personaje con la iglesia final (sube nivel)
         var chocaIglesia = function(player,iglesia){
+
              //Creo el cartel de final de nivel
              if(exito != 1){
+                 sonido_exito.play();
                 finalnivel_cartel = this.make.image({
                         x: this.cameras.main.scrollX + 400,
                         y: this.cameras.main.scrollY + 250,
@@ -184,24 +210,28 @@ class gameScene extends Phaser.Scene {
                     });
                     finalnivel_cartel.setDepth(2);
                     
-                    textoFinalNivel = this.add.text(this.cameras.main.scrollX + 200, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...',{
-                    fontSize: '25px'
-                });
-                    this.scene.pause(); 
-                    bgmusic.stop();
-                  var exito = 1;
-                  
-                  setTimeout(() => {  this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion}); }, 3000);
-         
-             }
+                    textoFinalNivel = this.add.text(this.cameras.main.scrollX + 220, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...\n\n  Pulsa SHIFT para seguir',{
+                        fontSize: '20px',
+                        fill: '#ffffff',
+                        fontStyle: 'bold',
+                        shadowStroke: true,
+                        stroke: 'black',
+                        strokeThickness: 4
+                    });
+                    textoFinalNivel.setDepth(2);
+                    exito = true;
 
-          
+                    this.physics.pause(); 
+                    bgmusic.stop();
+
+             }
 
         }
 
 
 
         var disparoGaysper = function(gaysper,bullet){
+            sonido_muereGaysper.play();
             bullet.destroy();
             gaysper.disableBody(true,true);
         }
@@ -213,10 +243,9 @@ class gameScene extends Phaser.Scene {
         lastFired = 0;
 
         bullets = this.physics.add.group();
+
         this.physics.add.collider(bullets);
-
-//bullets.body.collideWorldBounds=true;
-
+//        bullets.setCollideWorldBounds();
 
         //Defino qué elementos deben colisionar con otros y si se debe activar alguna acción
         this.physics.add.collider(player, layer_suelo);
@@ -224,7 +253,7 @@ class gameScene extends Phaser.Scene {
         this.physics.add.overlap(player, ostias, cogerOstia, null, this);
         this.physics.add.collider(gayspers, layer_suelo);
         this.physics.add.collider(player, gayspers, chocaGaysper, null, this);
-        this.physics.add.collider(player, iglesia_final, chocaIglesia, null, this);    
+        this.physics.add.overlap(player, iglesia_final, chocaIglesia, null, this);    
         this.physics.add.overlap(gayspers, bullets, disparoGaysper, null, this);  
         this.physics.add.overlap(layer_suelo, bullets, disparoSuelo, null, this);     
         //Defino el cartel con los puntos acumulados (comienza en 0)
@@ -235,7 +264,7 @@ class gameScene extends Phaser.Scene {
         textoPuntuacion.setScrollFactor(0);
 
         //Defino el cartel con el nivel
-        textoNivel = this.add.text(590, 20, 'Domingo nº' + this.currentLevel, {
+        textoNivel = this.add.text(570, 20, 'Domingo nº' + this.currentLevel, {
             fontSize: '30px',
             fill: '#ffffff'
         });
@@ -243,7 +272,25 @@ class gameScene extends Phaser.Scene {
 
         //Coloco el jugador por encima del cartel inicial
         player.setDepth(1);
+     
+        //Creo los sonidos
+        sonido_disparo = this.sound.add('sonido_disparo');
+        sonido_disparo.setVolume(0.2);
 
+        sonido_saltar = this.sound.add('sonido_saltar');
+     //   sonido_saltar.setVolume(0.2);
+
+        sonido_moneda = this.sound.add('sonido_moneda');
+        sonido_moneda.setVolume(0.5);
+
+        sonido_muereGaysper = this.sound.add('sonido_muereGaysper');
+        sonido_muereGaysper.setVolume(0.2);
+
+        sonido_muereCayetana = this.sound.add('sonido_muereCayetana');
+      //  sonido_muereCayetana.setVolume(0.2);
+
+        sonido_exito = this.sound.add('sonido_exito');
+     //   sonido_exito.setVolume(0.2);
 
 
     }
@@ -251,10 +298,15 @@ class gameScene extends Phaser.Scene {
  update (time)
  {
 
-        if(puntuacion >= 100){
-           // puntuacion = 0;
-            //this.scene.restart({ level: this.currentLevel + 1 })
+
+        //Si hemos superado un nivel, subo la dificultad
+        if ((exito)&&(cursors.shift.isDown))
+        {
+
+            exito = false;
+           this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion});
         }
+
 
 
         //Si hemos perdido, se detiene el juego
@@ -293,8 +345,10 @@ class gameScene extends Phaser.Scene {
         if (cursors.up.isDown && player.body.blocked.down) 
         {
             player.setVelocityY(-500);
+            sonido_saltar.play();
         }
 
+        //Defino el comportamiento de la tecla espacio ( disparar )
         if (cursors.space.isDown && (time > lastFired)){
             switch(direccion_pistola)
             {
@@ -316,6 +370,7 @@ class gameScene extends Phaser.Scene {
                     player.anims.play('left', true);
                break;
             }
+            sonido_disparo.play();
             lastFired = time + 250;
         }
 

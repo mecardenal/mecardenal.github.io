@@ -17,6 +17,14 @@ class loadingScene extends Phaser.Scene {
 		//Carrego els assets (imatges i sons)
 	    this.load.image('fondo', 'assets/fondo_bosque.png');
 	    this.load.audio('musica_fons', 'assets/audio/Bella Ciao (8 Bit Mix).mp3');
+	    this.load.audio('sonido_disparo', 'assets/audio/270343__littlerobotsoundfactory__shoot-01.wav');
+	     this.load.audio('sonido_saltar', 'assets/audio/187025__lloydevans09__jump1.wav');
+	   this.load.audio('sonido_moneda', 'assets/audio/341695__projectsu012__coins-1.wav');
+	    this.load.audio('sonido_muereGaysper', 'assets/audio/170144__timgormly__8-bit-explosion2.wav');
+	    this.load.audio('sonido_muereCayetana', 'assets/audio/350985__cabled-mess__lose-c-02.wav');
+	    this.load.audio('sonido_exito', 'assets/audio/448274__henryrichard__sfx-success.wav');
+	    
+
 	    this.load.spritesheet('cayetana',  'assets/spritesheet_Cayetana.png', { frameWidth: 60, frameHeight: 70 });
 	    this.load.image('ostia',  'assets/sprite_ostia.png');
 	    this.load.tilemapTiledJSON('mapa', 'assets/Mapa_MisaQuest.json');
@@ -28,8 +36,9 @@ class loadingScene extends Phaser.Scene {
  		this.load.image("bullet", "assets/bullet.png");
  		this.load.image('cartel_amen','assets/amen_misaquest.png');
 		this.load.image('iglesia','assets/iglesia.png');
+    	this.load.image('fuego', 'assets/muzzleflash3.png');
 
-	    //Comença la part de la pantalla de carrga
+        //Comença la part de la pantalla de carrga
 	    this.load.on('progress', function (value) {
 	        progressBar.clear();
 	        progressBar.fillStyle(0xB43973, 1);
