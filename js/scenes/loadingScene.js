@@ -15,16 +15,20 @@ class loadingScene extends Phaser.Scene {
 	    progressBox.fillRect(240, 270, 320, 50);
 
 		//Carrego els assets (imatges i sons)
+
+		//El fons
 	    this.load.image('fondo', 'assets/fondo_bosque.png');
+	    
+	    //Musica i sons
 	    this.load.audio('musica_fons', 'assets/audio/Bella Ciao (8 Bit Mix).mp3');
 	    this.load.audio('sonido_disparo', 'assets/audio/270343__littlerobotsoundfactory__shoot-01.wav');
-	     this.load.audio('sonido_saltar', 'assets/audio/187025__lloydevans09__jump1.wav');
-	   this.load.audio('sonido_moneda', 'assets/audio/341695__projectsu012__coins-1.wav');
+	    this.load.audio('sonido_saltar', 'assets/audio/187025__lloydevans09__jump1.wav');
+	    this.load.audio('sonido_moneda', 'assets/audio/341695__projectsu012__coins-1.wav');
 	    this.load.audio('sonido_muereGaysper', 'assets/audio/170144__timgormly__8-bit-explosion2.wav');
 	    this.load.audio('sonido_muereCayetana', 'assets/audio/350985__cabled-mess__lose-c-02.wav');
 	    this.load.audio('sonido_exito', 'assets/audio/448274__henryrichard__sfx-success.wav');
 	    
-
+	    //Elmenents grafics (personatges, mapa, particules)
 	    this.load.spritesheet('cayetana',  'assets/spritesheet_Cayetana.png', { frameWidth: 60, frameHeight: 70 });
 	    this.load.image('ostia',  'assets/sprite_ostia.png');
 	    this.load.tilemapTiledJSON('mapa', 'assets/Mapa_MisaQuest.json');
@@ -38,16 +42,15 @@ class loadingScene extends Phaser.Scene {
 		this.load.image('iglesia','assets/iglesia.png');
     	this.load.image('fuego', 'assets/muzzleflash3.png');
 
-        //Comença la part de la pantalla de carrga
+        //Comença la part de la pantalla de carrega
 	    this.load.on('progress', function (value) {
 	        progressBar.clear();
 	        progressBar.fillStyle(0xB43973, 1);
 	        progressBar.fillRect(250, 280, 300 * value, 30);
 	        percentText.setText(parseInt(value * 100) + '%');
 	    });
-	                
-    
-	    //Actualitzo el progrés de la barra a mesura que es carreguen els fitxers 
+	                    
+	    //Actualitzo el progrés de la barra de càrrega a mesura que es carreguen els fitxers 
 	    this.load.on('complete', function () {
 	        progressBar.destroy();
 	        progressBox.destroy();

@@ -1,5 +1,4 @@
 //En esta escena se muestra el juego, listo para jugar
-
 class gameScene extends Phaser.Scene {
 	constructor(){
 		super('gameScene');
@@ -59,7 +58,6 @@ class gameScene extends Phaser.Scene {
         const mapa = this.make.tilemap({ key: 'mapa'}); 
         const tileset = mapa.addTilesetImage('Tileset_MisaQuest');
 
-
         //Creo cartel inicio nivel
         var quieromisa_cartel = this.make.image({
             x: game.config.width / 2,
@@ -69,7 +67,6 @@ class gameScene extends Phaser.Scene {
 
         //Coloco la iglesia al final del mapa
         iglesia_final = this.physics.add.staticImage(4650,400,'iglesia');
-        //iglesia_final = this.physics.add.staticImage(900,400,'iglesia');
 
         iglesia_final.setScale(2);
 
@@ -87,7 +84,6 @@ class gameScene extends Phaser.Scene {
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
             child.body.velocity.setTo(0, -200);
             child.setDepth(1);
-      
         });
 
         //Genero los enemigos
@@ -97,11 +93,10 @@ class gameScene extends Phaser.Scene {
             setXY: { x: 900, y: 100, stepX: 150 },
         });
        
-       //Genero el fuego
-       
+        //Genero el fuego
         var bolaFuego = this.add.particles('fuego');
         bolaFuego.setDepth(4);
-        //Genero 3 bolas de fuego
+        //Genero 100 bolas de fuego
         for  (var i = 0; i < 100; i++){
 
             bolaFuego.createEmitter({
@@ -123,44 +118,38 @@ class gameScene extends Phaser.Scene {
 
 
         //Defino el comportamiento de los enemigos
-        
+        //Con cada nivel se multiplica la velocidad
         var velocidad_min = 100 * this.currentLevel;
         var velocidad_max = 200 * this.currentLevel;
         
         gayspers.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
             child.allowGravity = false;
-            child.body.bounce.y = 0;
+            child.body.bounce.y = 1;
             child.body.bounce.x = 1;
             child.body.collideWorldBounds = true;
             child.body.velocity.x = Phaser.Math.Between(velocidad_min, velocidad_max);
+            child.body.velocity.y = Phaser.Math.Between(50,60);
             child.setDepth(2);
             child.setScale(1.2);
         });
         
-      
         //Coloco la capa del suelo y las plataformas
         const layer_suelo = mapa.createDynamicLayer('suelos', tileset, 0,-360);
         layer_suelo.setScale(2);
+
         //Defino qué tiles deben colisionar
         mapa.setCollisionBetween(17, 31);
         mapa.setCollisionBetween(70, 73);
         mapa.setCollisionBetween(96, 127); 
 
-
-
-
         //Configuro la cámara para que siga al jugador, y que el fondo se mueva a la vez
         this.physics.world.bounds.width = layer_suelo.width*2;
         this.physics.world.bounds.height = layer_suelo.height*2;
-
         this.cameras.main.setBounds(0, 0, layer_suelo.width*2, layer_suelo.height).setName('main');
         this.cameras.main.startFollow(player);
-        
 
-
-
-	    //Función al colisionar el personaje con una ostia
+	    //Función al colisionar el personaje con una ostia (la recoge y suma 10 puntos)
 	    var cogerOstia = function(player, ostia) {
             sonido_moneda.play();
             ostia.disableBody(true, true);
@@ -168,19 +157,28 @@ class gameScene extends Phaser.Scene {
             textoPuntuacion.setText(puntuacion + ' Ostias');
 	    }
 
-	    //Función al colisionar el personaje con un enemigo
+	    //Función al colisionar el personaje con un enemigo (gameover)
 	    var chocaGaysper = function(player, gaysper){
+           
+            //Paro la música de fondo
+            bgmusic.stop();    
+
+            //Pongo el audio y paro la escena
             sonido_muereCayetana.play();
 	        this.physics.pause();
+            
+            //Pinto a Cayetana de rojo
 	        player.setTint(0xff0000);
 	        player.anims.play('turn');
-            //Creo el cartel de game over
+
+            //Creo el cartel y el texto de game over
             gameover_cartel = this.make.image({
                 x: this.cameras.main.scrollX + 400,
                 y: this.cameras.main.scrollY + 250,
                 key: 'cartel_gameover'
             });
             gameover_cartel.setDepth(2);
+            
             textoGO = this.add.text(this.cameras.main.scrollX + 280, this.cameras.main.scrollY + 380, '   Pulsa SHIFT para\nponer la otra mejilla', {
                 fontSize: '20px',
                 fill: '#ffffff',
@@ -188,29 +186,27 @@ class gameScene extends Phaser.Scene {
                 shadowStroke: true,
                 stroke: 'black',
                 strokeThickness: 4
-
             });
             textoGO.setDepth(2);
 
-            bgmusic.stop();
+            //Activo la variable que indica que hemos perdido
             gameOver = true;
 	    }
 
 
-        //Función al colisionar el personaje con la iglesia final (sube nivel)
+        //Función cuando Cayetana pasa delante de la iglesia final (sube nivel)
         var chocaIglesia = function(player,iglesia){
-
-             //Creo el cartel de final de nivel
-             if(exito != 1){
-                 sonido_exito.play();
+            if(exito != 1){
+                //Creo el cartel y el sonido de final de nivel
+                sonido_exito.play();
                 finalnivel_cartel = this.make.image({
                         x: this.cameras.main.scrollX + 400,
                         y: this.cameras.main.scrollY + 250,
                         key: 'cartel_amen'
                     });
-                    finalnivel_cartel.setDepth(2);
+                finalnivel_cartel.setDepth(2);
                     
-                    textoFinalNivel = this.add.text(this.cameras.main.scrollX + 220, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...\n\n  Pulsa SHIFT para seguir',{
+                textoFinalNivel = this.add.text(this.cameras.main.scrollX + 220, this.cameras.main.scrollY + 270, 'Hasta el próximo domingo...\n\n  Pulsa SHIFT para seguir',{
                         fontSize: '20px',
                         fill: '#ffffff',
                         fontStyle: 'bold',
@@ -218,24 +214,26 @@ class gameScene extends Phaser.Scene {
                         stroke: 'black',
                         strokeThickness: 4
                     });
-                    textoFinalNivel.setDepth(2);
-                    exito = true;
+                textoFinalNivel.setDepth(2);
+                
+                //Activo la variable que indica que hemos superado un nivel
+                exito = true;
 
-                    this.physics.pause(); 
-                    bgmusic.stop();
-
-             }
-
+                //Paro la física y la música
+                this.physics.pause(); 
+                bgmusic.stop();
+            }
         }
 
 
-
+        //Si una bala toca un gaysper, lo mata
         var disparoGaysper = function(gaysper,bullet){
             sonido_muereGaysper.play();
             bullet.destroy();
             gaysper.disableBody(true,true);
         }
 
+        //Si una bala toca el suelo se destruye
         var disparoSuelo = function(suelo,bullet){
             bullet.destroy();
         }
@@ -255,7 +253,8 @@ class gameScene extends Phaser.Scene {
         this.physics.add.collider(player, gayspers, chocaGaysper, null, this);
         this.physics.add.overlap(player, iglesia_final, chocaIglesia, null, this);    
         this.physics.add.overlap(gayspers, bullets, disparoGaysper, null, this);  
-        this.physics.add.overlap(layer_suelo, bullets, disparoSuelo, null, this);     
+        this.physics.add.overlap(layer_suelo, bullets, disparoSuelo, null, this);   
+
         //Defino el cartel con los puntos acumulados (comienza en 0)
         textoPuntuacion = this.add.text(20, 20, puntuacion + ' Ostias', {
             fontSize: '30px',
@@ -278,7 +277,6 @@ class gameScene extends Phaser.Scene {
         sonido_disparo.setVolume(0.2);
 
         sonido_saltar = this.sound.add('sonido_saltar');
-     //   sonido_saltar.setVolume(0.2);
 
         sonido_moneda = this.sound.add('sonido_moneda');
         sonido_moneda.setVolume(0.5);
@@ -287,10 +285,8 @@ class gameScene extends Phaser.Scene {
         sonido_muereGaysper.setVolume(0.2);
 
         sonido_muereCayetana = this.sound.add('sonido_muereCayetana');
-      //  sonido_muereCayetana.setVolume(0.2);
 
         sonido_exito = this.sound.add('sonido_exito');
-     //   sonido_exito.setVolume(0.2);
 
 
     }
@@ -298,16 +294,12 @@ class gameScene extends Phaser.Scene {
  update (time)
  {
 
-
         //Si hemos superado un nivel, subo la dificultad
         if ((exito)&&(cursors.shift.isDown))
         {
-
-            exito = false;
+           exito = false;
            this.scene.restart({ level: this.currentLevel + 1 , puntos: puntuacion});
         }
-
-
 
         //Si hemos perdido, se detiene el juego
         if ((gameOver)&&(cursors.shift.isDown))
@@ -332,20 +324,25 @@ class gameScene extends Phaser.Scene {
 
             player.anims.play('right', true);
         }
-        else if(cursors.space.isDown){
+        else if(cursors.space.isDown|| !player.body.blocked.down){
             //no hacer nada
         }
         else //ni izq ni der
         {
             player.setVelocityX(0);
-
             player.anims.play('turn');
         }
 
+        //Saltar
         if (cursors.up.isDown && player.body.blocked.down) 
         {
             player.setVelocityY(-500);
             sonido_saltar.play();
+        }
+
+        //Si despues de un salto queremos descender más rápido, apretamos DOWN
+        if(cursors.down.isDown && !player.body.blocked.down){
+            player.setVelocityY(300);
         }
 
         //Defino el comportamiento de la tecla espacio ( disparar )
@@ -373,8 +370,6 @@ class gameScene extends Phaser.Scene {
             sonido_disparo.play();
             lastFired = time + 250;
         }
-
-
 
         //Muevo el fondo siguiendo al personaje, pero más lentamente
         this.mainGround.tilePositionX = this.cameras.main.scrollX * .2
