@@ -124,12 +124,13 @@ class gameScene extends Phaser.Scene {
         
         gayspers.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
-            child.allowGravity = false;
-            child.body.bounce.y = 1;
+            child.body.gravity.y = 10;
+            child.body.bounce.y = 0.8;
             child.body.bounce.x = 1;
+            child.body.restitution = 1;
             child.body.collideWorldBounds = true;
             child.body.velocity.x = Phaser.Math.Between(velocidad_min, velocidad_max);
-            child.body.velocity.y = Phaser.Math.Between(50,60);
+            child.body.velocity.y = Phaser.Math.Between(150,200);
             child.setDepth(2);
             child.setScale(1.2);
         });
