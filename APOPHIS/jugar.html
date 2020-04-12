@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>  
+
+	<meta charset= "uft-8">	
+	<title> Apophis Inicio </title>
+<!--Se llama js phaser-->
+	<script src="js/phaser.js"></script>
+	
+<!-- Se enlaza hoja de estilos -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+<!--Se enlaza fuente de Google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+<!--Se detallan a continuación metadatos -->
+
+
+</head>
+
+<body>
+
+	<header>
+<!--Menu desplegable-->
+
+<nav class="menudesplegable">
+			<ul class="menu">
+				<li> Menu
+
+					<ul class="submenu">
+						<li><a href="index.html">Inicio</a></li>
+						<li><a href="videojuego.html">Videojuego</a></li>
+						<li><a href="contacto.html">Contacto</a></li>
+						<li><a href="jugar.html"> Jugar </a></li>
+
+					</ul>	
+				</li>
+			</ul>	
+		</nav>
+
+
+
+ <!--foto de la cabecera-->		
+	<a href="cabecera.jpg"><img src="files/cabecera.jpg" alt="Cielo infierno portada" width=980px; height="460px"  ></a>
+
+<!--título-->	
+	 <h1> APOPHIS </h1>
+
+	</header>
+<!--barra de navegación-->
+	<nav>
+		<ul class="navegador"> 
+			<li><a href="index.html"> INICIO</a></li>
+			<li><a href="videojuego.html"> VIDEOJUEGO</a></li>
+			<li><a href="contacto.html"> CONTACTO</a></li>
+			<li><a href="jugar.html"> Jugar </a></li>
+			
+		</ul>
+	</nav>
+
+	<script type="text/javascript">  
+					var config = {
+		            type: Phaser.AUTO,
+		            width: 800,
+		            height: 600,
+		                           
+		              }
+
+		            scene: {
+		                preload: preload,
+		                create: create,
+		                update: update
+			                 }
+
+		 var game = new Phaser.Game(config);   
+
+
+
+	    function preload ()
+	    { 
+	      this.load.image('fondo','../assets/fondo.png');
+
+	     };
+
+
+	    function create ()
+	    { this.add.image(300,400,'fondo');
+	      
+
+	    };
+
+	    function update ()
+	    {
+	    };
+
+
+	</script>
+		
+
+	<footer>
+			 Copyright 2020 <br>  Sindy Tatiana Cardona Sosa  <br> IOC
+	</footer>
+</body>
+</html> 
